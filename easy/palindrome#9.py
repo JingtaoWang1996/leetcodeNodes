@@ -5,16 +5,21 @@
 """
 # 注意点：1）负数 不是回文数
 # 可能方法：
-1、转成字符串判断 
-64 ms  58.20%
-15 MB  19.52%
+1、转成字符串判断  64 ms  58.20%  15 MB  19.52%
 2、取整取余判断
 """
 
 
 class Solution:
     def isPalindrome(self, x: int) -> bool:
-        return str(x)[::-1] == str(x)
-
+        # return str(x)[::-1] == str(x)
+        if x < 0:
+            return False
+        data = list()
+        while x >= 10:
+            data.append(x % 10)
+            x = x//10
+        data.append(x)
+        return data == data[::-1]
 s = Solution()
-print(s.isPalindrome(10))
+print(s.isPalindrome(-121))
